@@ -76,7 +76,7 @@ export default function SlideshowPage() {
       </AnimatePresence>
       <div className={styles.overlay}>
         <div className={styles.footer}>
-          <h3>Reda & Rania — 12.06.2026</h3>
+          <h3>Reda & Rania — 16.05.2026</h3>
         </div>
       </div>
     </div>

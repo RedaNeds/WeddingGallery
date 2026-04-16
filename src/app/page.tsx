@@ -34,7 +34,7 @@ export default function LandingPage() {
         >
           <h1 className={styles.title}>Reda & Rania</h1>
           <div className="gold-line"></div>
-          <p className={styles.date}>12 JUIN 2026</p>
+          <p className={styles.date}>16 MAI 2026</p>
           
           <div className="glass-card">
             <h2 className={styles.subtitle}>Bienvenue sur notre galerie</h2>
