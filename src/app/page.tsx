@@ -12,10 +12,9 @@ export default function LandingPage() {
 
   const handleJoin = (e: React.FormEvent) => {
     e.preventDefault();
-    const correctCode = process.env.NEXT_PUBLIC_GUEST_ACCESS_CODE || 'WEDDING2026';
+    const correctCode = process.env.NEXT_PUBLIC_GUEST_ACCESS_CODE || 'MARIAGE2026';
     
     if (code.toUpperCase() === correctCode.toUpperCase()) {
-      // In a real app,  description: "Partagez et célébrez notre union à travers vos yeux.",
       localStorage.setItem('wedding_access', 'true');
       router.push('/gallery');
     } else {
