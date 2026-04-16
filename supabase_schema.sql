@@ -15,5 +15,5 @@ CREATE TABLE photos (
 ALTER PUBLICATION supabase_realtime ADD TABLE photos;
 
 -- Create a storage bucket for photos
--- Note: You'll need to create a bucket named 'wedding-photos' in the Supabase UI 
+-- Note: You'll need to create a bucket named 'photos' in the Supabase UI 
 -- and set its privacy to 'Public'.

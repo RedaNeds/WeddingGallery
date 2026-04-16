@@ -26,14 +26,14 @@ export default function UploadButton({ onUploadSuccess }: UploadButtonProps) {
 
       // 1. Upload to Supabase Storage
       const { data, error: uploadError } = await supabase.storage
-        .from('wedding-photos')
+        .from('photos')
         .upload(filePath, file);
 
       if (uploadError) throw uploadError;
 
       // 2. Get Public URL
       const { data: { publicUrl } } = supabase.storage
-        .from('wedding-photos')
+        .from('photos')
         .getPublicUrl(filePath);
 
       // 3. Save to database

@@ -89,7 +89,7 @@ export default function AdminPage() {
 
     try {
       // 1. Delete from storage
-      await supabase.storage.from('wedding-photos').remove([storagePath]);
+      await supabase.storage.from('photos').remove([storagePath]);
       // 2. Delete from DB
       await supabase.from('photos').delete().eq('id', id);
       
