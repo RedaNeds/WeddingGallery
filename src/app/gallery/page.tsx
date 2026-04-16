@@ -68,7 +68,7 @@ export default function GalleryPage() {
   return (
     <div className={styles.wrapper}>
       <header className={styles.header}>
-        <h1 className={styles.logo}>S & M</h1>
+        <h1 className={styles.logo}>R & R</h1>
         <div className="gold-line"></div>
         <p className={styles.tagline}>Mouvements, Éclats, Souvenirs</p>
       </header>
@@ -113,7 +113,7 @@ export default function GalleryPage() {
       <footer className={styles.footer}>
         <div className="gold-line"></div>
         <div className={styles.footerContent}>
-          <p>© 2026 Sarah & Marc</p>
+          <p>© 2026 Reda & Rania</p>
           <a href="/admin" className={styles.adminLink}>Espace Privé</a>
         </div>
       </footer>

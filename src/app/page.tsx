@@ -15,7 +15,7 @@ export default function LandingPage() {
     const correctCode = process.env.NEXT_PUBLIC_GUEST_ACCESS_CODE || 'WEDDING2026';
     
     if (code.toUpperCase() === correctCode.toUpperCase()) {
-      // In a real app, we might set a cookie or localStorage token
+      // In a real app,  description: "Partagez et célébrez notre union à travers vos yeux.",
       localStorage.setItem('wedding_access', 'true');
       router.push('/gallery');
     } else {
@@ -32,7 +32,7 @@ export default function LandingPage() {
           transition={{ duration: 0.8 }}
           className={styles.content}
         >
-          <h1 className={styles.title}>Sarah & Marc</h1>
+          <h1 className={styles.title}>Reda & Rania</h1>
           <div className="gold-line"></div>
           <p className={styles.date}>12 JUIN 2026</p>
           

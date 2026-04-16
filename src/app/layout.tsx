@@ -15,8 +15,8 @@ const montserrat = Montserrat({
 });
 
 export const metadata: Metadata = {
-  title: "Eternal Moments | Wedding Gallery",
-  description: "Share and celebrate our special day through your lens.",
+  title: "Reda & Rania | Notre Mariage",
+  description: "Partagez et célébrez notre union à travers vos photos.",
 };
 
 export default function RootLayout({
