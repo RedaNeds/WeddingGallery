@@ -67,12 +67,12 @@ export default function UploadButton({ onUploadSuccess }: UploadButtonProps) {
         {isUploading ? (
           <>
             <Loader2 className={styles.spinner} />
-            <span>ENVOI...</span>
+            <span>ENVOI EN COURS...</span>
           </>
         ) : (
           <>
             <Camera size={20} />
-            <span>PARTAGER UN MOMENT</span>
+            <span>PARTAGER UN SOUVENIR</span>
           </>
         )}
       </label>

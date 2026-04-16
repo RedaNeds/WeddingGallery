@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
+import { Loader2 } from 'lucide-react';
 import { supabase } from '@/lib/supabase';
 import UploadButton from '@/components/UploadButton';
 import styles from './gallery.module.css';
@@ -57,8 +58,8 @@ export default function GalleryPage() {
 
       if (error) throw error;
       setPhotos(data || []);
-    } catch (err) {
-      console.error('Error fetching photos:', err);
+    } catch (err: any) {
+      console.error('Error fetching photos:', JSON.stringify(err, null, 2) || err);
     } finally {
       setLoading(false);
     }
@@ -78,7 +79,10 @@ export default function GalleryPage() {
 
       <main className={styles.container}>
         {loading ? (
-          <div className={styles.loading}>Chargement de la galerie...</div>
+          <div className={styles.loading}>
+            <Loader2 className="spinner" size={40} color="var(--gold)" />
+            <p>Chargement de vos précieux souvenirs...</p>
+          </div>
         ) : (
           <div className={styles.masonry}>
             <AnimatePresence>
@@ -86,8 +90,8 @@ export default function GalleryPage() {
                 <motion.div
                   key={photo.id}
                   layout
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, scale: 0.9 }}
                   className={styles.item}
                 >
@@ -97,13 +101,22 @@ export default function GalleryPage() {
             </AnimatePresence>
           </div>
         )}
+
+        {!loading && photos.length === 0 && (
+          <div className={styles.empty}>
+            <p>La galerie est encore vide.</p>
+            <p className={styles.subEmpty}>Soyez la première personne à immortaliser un instant !</p>
+          </div>
+        )}
       </main>
 
-      {photos.length === 0 && !loading && (
-        <div className={styles.empty}>
-          <p>Pas encore de photos. Soyez le premier à en partager une !</p>
+      <footer className={styles.footer}>
+        <div className="gold-line"></div>
+        <div className={styles.footerContent}>
+          <p>© 2026 Sarah & Marc</p>
+          <a href="/admin" className={styles.adminLink}>Espace Privé</a>
         </div>
-      )}
+      </footer>
     </div>
   );
 }

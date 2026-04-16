@@ -1,7 +1,8 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Trash2, ShieldCheck, LogOut, Download, ExternalLink, Loader2 } from 'lucide-react';
+import Link from 'next/link';
+import { Trash2, ShieldCheck, LogOut, Download, ExternalLink, Loader2, ArrowLeft } from 'lucide-react';
 import { supabase } from '@/lib/supabase';
 import JSZip from 'jszip';
 import { saveAs } from 'file-saver';
@@ -123,7 +124,13 @@ export default function AdminPage() {
     <div className={styles.adminWrapper}>
       <nav className={styles.navbar}>
         <div className={styles.navContent}>
-          <h2>Admin Panel</h2>
+          <div className={styles.navLeft}>
+            <Link href="/gallery" className={styles.backLink}>
+              <ArrowLeft size={18} />
+              <span>Galeire</span>
+            </Link>
+            <h2>Admin Panel</h2>
+          </div>
           <div className={styles.navActions}>
             <button onClick={handleLogout} className={styles.logoutBtn}>
               <LogOut size={18} /> Quitter
