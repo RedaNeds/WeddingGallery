@@ -127,7 +127,7 @@ export default function AdminPage() {
           <div className={styles.navLeft}>
             <Link href="/gallery" className={styles.backLink}>
               <ArrowLeft size={18} />
-              <span>Galeire</span>
+              <span>Galerie</span>
             </Link>
             <h2>Admin Panel</h2>
           </div>
