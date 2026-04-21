@@ -1,36 +1,66 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Wedding Gallery
 
-## Getting Started
+A modern, real-time photo sharing application for weddings. Guests can upload photos live, and the couple can manage the gallery from an admin dashboard.
 
-First, run the development server:
+## ✨ Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- **Guest Access**: Secure entry via an access code.
+- **Real-time Photo Feed**: Photos appear instantly as they are uploaded using Supabase Realtime.
+- **Live Slideshow**: Perfect for displaying on a big screen during the event.
+- **Bulk Download**: Admin can download all photos in a ZIP archive.
+- **Moderation**: Approve or hide photos through a protected admin dashboard.
+- **Elegant UI**: Premium cream and gold aesthetic with fluid Framer Motion animations.
+
+## 🛠️ Tech Stack
+
+- **Framework**: [Next.js](https://nextjs.org/) (App Router)
+- **Database & Storage**: [Supabase](https://supabase.com/)
+- **Animations**: [Framer Motion](https://www.framer.com/motion/)
+- **Icons**: [Lucide React](https://lucide.dev/)
+- **Styling**: Vanilla CSS Modules
+
+## 🚀 Getting Started
+
+### 1. Prerequisites
+
+- Node.js (v18+)
+- A Supabase account and project.
+
+### 2. Database Setup
+
+1. Go to your Supabase SQL Editor.
+2. Run the script provided in `supabase_schema.sql` to create the `photos` table and enable Realtime.
+3. Create a public bucket named `photos` in the Storage section.
+
+### 3. Environment Variables
+
+Create a `.env.local` file in the root directory:
+
+```env
+NEXT_PUBLIC_SUPABASE_URL=your_project_url
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your_anon_key
+NEXT_PUBLIC_GUEST_ACCESS_CODE=YOUR_GUEST_CODE
+NEXT_PUBLIC_ADMIN_PASSWORD=YOUR_ADMIN_PASSWORD
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 4. Installation & Local Development
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+npm install
+npm run dev
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Open [http://localhost:3000](http://localhost:3000) to see the result.
 
-## Learn More
+## 📦 Deployment
 
-To learn more about Next.js, take a look at the following resources:
+The easiest way to deploy is using the [Vercel Platform](https://vercel.com/new).
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1. Push your code to GitHub.
+2. Import the repository into Vercel.
+3. Add your environment variables in the Vercel project settings.
+4. Deploy!
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 📜 License
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Private - All rights reserved.
