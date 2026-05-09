@@ -14,36 +14,42 @@ export default function UploadButton({ onUploadSuccess }: UploadButtonProps) {
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (!file) return;
+    const files = e.target.files;
+    if (!files || files.length === 0) return;
 
     try {
       setIsUploading(true);
       
-      const fileExt = file.name.split('.').pop();
-      const fileName = `${Math.random()}.${fileExt}`;
-      const filePath = `uploads/${fileName}`;
+      const uploadPromises = Array.from(files).map(async (file) => {
+        const fileExt = file.name.split('.').pop();
+        const fileName = `${Date.now()}-${Math.random().toString(36).substring(2)}.${fileExt}`;
+        const filePath = `uploads/${fileName}`;
 
-      // 1. Upload to Supabase Storage
-      const { data, error: uploadError } = await supabase.storage
-        .from('photos')
-        .upload(filePath, file);
+        // 1. Upload to Supabase Storage
+        const { data, error: uploadError } = await supabase.storage
+          .from('photos')
+          .upload(filePath, file);
 
-      if (uploadError) throw uploadError;
+        if (uploadError) throw uploadError;
 
-      // 2. Get Public URL
-      const { data: { publicUrl } } = supabase.storage
-        .from('photos')
-        .getPublicUrl(filePath);
+        // 2. Get Public URL
+        const { data: { publicUrl } } = supabase.storage
+          .from('photos')
+          .getPublicUrl(filePath);
 
-      // 3. Save to database
-      const { error: dbError } = await supabase
-        .from('photos')
-        .insert([{ url: publicUrl, storage_path: filePath }]);
+        // 3. Save to database
+        const { error: dbError } = await supabase
+          .from('photos')
+          .insert([{ url: publicUrl, storage_path: filePath }]);
 
-      if (dbError) throw dbError;
+        if (dbError) throw dbError;
 
-      onUploadSuccess(publicUrl);
+        return publicUrl;
+      });
+
+      const urls = await Promise.all(uploadPromises);
+      urls.forEach(url => onUploadSuccess(url));
+
     } catch (error) {
       console.error('Error uploading:', error);
       alert('Erreur lors de l\'envoi. Vérifiez votre connexion.');
@@ -58,6 +64,7 @@ export default function UploadButton({ onUploadSuccess }: UploadButtonProps) {
       <input
         type="file"
         accept="image/*,video/*"
+        multiple
         onChange={handleFileChange}
         ref={fileInputRef}
         className={styles.hiddenInput}

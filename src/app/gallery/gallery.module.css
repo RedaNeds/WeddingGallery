@@ -124,7 +124,11 @@
 
 @media (max-width: 600px) {
   .masonry {
-    column-count: 1;
+    column-count: 2;
+    column-gap: 0.5rem;
+  }
+  .item {
+    margin-bottom: 0.5rem;
   }
   .logo {
     font-size: 2rem;
